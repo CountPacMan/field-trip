@@ -5,8 +5,8 @@
   <title>Student App</title>
   <script src="lib/angular.js"></script>
   <script src="app.js"></script>
-  <script src="controllers/StudentsController.js"></script>
-  <script src="controllers/FieldTripsController.js"></script>
+  <script src="services/StudentsFactory.js"></script>
+  <script src="controllers/StudentsController.js"></script>  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
 <body>
@@ -33,7 +33,7 @@
           <ul>
             <li ng-repeat="item in filtered = (students | filter:query)">
               <span ng-click="editing = true" ng-hide="editing">
-                {{item.name}} <a ng-click="deleteStudent(item)">x</a>
+                {{item.name}} - Permission Slip? {{getPermission(item)}} <a ng-click="deleteStudent(item)">x</a>
               </span>
               <span class="form-group" ng-show="editing" ng-submit="editing = false">
                 <form class="form-inline" role="form">
@@ -59,7 +59,7 @@
 
     </div>
 
-    <!-- *********  Permission Slips  ************** -->
+    <!-- *********  Permission Slips  **************
     <div class="row permission" ng-controller="FieldTripsCtrl">
       <div class="col-md-6">
         <h2> Permission Slips</h2>
@@ -70,7 +70,7 @@
         </ul>
       </div>
     </div>
-
+  -->
   </div>
 </body>
 </html>

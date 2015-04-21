@@ -1,11 +1,23 @@
-studentRoster.controller('StudentsCtrl', function StudentsCtrl($scope) {
-  $scope.students = [];
+studentRoster.controller('StudentsCtrl', function StudentsCtrl($scope, StudentsFactory) {
+  $scope.StudentsFactory = StudentsFactory;
+  $scope.students = StudentsFactory.students;
+
+
   $scope.addStudent = function() {
-    $scope.students.push({name: $scope.studentName});
+    var name = $scope.studentName;
+    $scope.StudentsFactory.addStudent(name);
     $scope.studentName = null;
   };
+
   $scope.deleteStudent = function(student) {
-    var index = $scope.students.indexOf(student);
-    $scope.students.splice(index, 1);
-  }
+    $scope.StudentsFactory.deleteStudent(student);
+  };
+
+  $scope.addPermission = function(student) {
+    $scope.StudentsFactory.addPermission(student);
+  };
+
+  $scope.getPermission = function(student) {
+    return $scope.StudentsFactory.getPermission(student);
+  };
 });
