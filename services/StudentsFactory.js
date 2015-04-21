@@ -25,5 +25,11 @@ studentRoster.factory('StudentsFactory', function StudentsFactory() {
     var index = factory.getIndex(student);
     return factory.students[index].permissionSlip === true ? "yes" : "no";
   };
+
+  factory.changePermission = function(student) {
+    var index = factory.getIndex(student);
+    factory.students[index].permissionSlip = factory.students[index].permissionSlip ? false : true;
+  }
+  
   return factory;
 });

@@ -6,8 +6,9 @@
   <script src="lib/angular.js"></script>
   <script src="app.js"></script>
   <script src="services/StudentsFactory.js"></script>
-  <script src="controllers/StudentsController.js"></script>  
+  <script src="controllers/StudentsController.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="container">
@@ -32,9 +33,8 @@
           <h2 ng-show="students.length && !filtered.length">No Matches</h2>
           <ul>
             <li ng-repeat="item in filtered = (students | filter:query)">
-              <span ng-click="editing = true" ng-hide="editing">
-                {{item.name}} - Permission Slip? {{getPermission(item)}} <a ng-click="deleteStudent(item)">x</a>
-              </span>
+              <span class="clickable" ng-click="editing = true" ng-hide="editing">{{item.name}}</span> - Permission Slip? <a class="clickable" ng-click="changePermission(item)">{{getPermission(item)}}</a> <a ng-click="deleteStudent(item)">x</a>
+
               <span class="form-group" ng-show="editing" ng-submit="editing = false">
                 <form class="form-inline" role="form">
                   <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>

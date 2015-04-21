@@ -20,4 +20,8 @@ studentRoster.controller('StudentsCtrl', function StudentsCtrl($scope, StudentsF
   $scope.getPermission = function(student) {
     return $scope.StudentsFactory.getPermission(student);
   };
+
+  $scope.changePermission = function(student) {
+    return $scope.StudentsFactory.changePermission(student);
+  }
 });

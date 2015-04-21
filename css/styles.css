@@ -1,0 +1,22 @@
+a:hover,
+.column-name:hover,
+.clickable:hover {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.clickable {
+  color: #BF1950;
+}
+
+.chart-titles {
+  border-bottom: solid 3px lightgrey;
+}
+
+.column-name {
+  color: green;
+  font-weight: 500;
+}
