@@ -3,7 +3,7 @@ studentRoster.factory('StudentsFactory', function StudentsFactory() {
   factory.students = [];
 
   factory.addStudent = function(name) {
-    var student = { name: name, permissionSlip: false };
+    var student = { name: name, permissionSlip: "no" };
     factory.students.push(student);
   };
 
@@ -14,7 +14,7 @@ studentRoster.factory('StudentsFactory', function StudentsFactory() {
 
   factory.addPermission = function(student) {
     var index = factory.getIndex(student);
-    factory.students[index].permissionSlip = true;
+    factory.students[index].permissionSlip = "yes";
   };
 
   factory.getIndex = function(student) {
@@ -23,13 +23,13 @@ studentRoster.factory('StudentsFactory', function StudentsFactory() {
 
   factory.getPermission = function(student) {
     var index = factory.getIndex(student);
-    return factory.students[index].permissionSlip === true ? "yes" : "no";
+    return factory.students[index].permissionSlip;
   };
 
   factory.changePermission = function(student) {
     var index = factory.getIndex(student);
-    factory.students[index].permissionSlip = factory.students[index].permissionSlip ? false : true;
+    factory.students[index].permissionSlip = factory.students[index].permissionSlip === "yes" ? "no" : "yes";
   }
-  
+
   return factory;
 });

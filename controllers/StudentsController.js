@@ -24,4 +24,8 @@ studentRoster.controller('StudentsCtrl', function StudentsCtrl($scope, StudentsF
   $scope.changePermission = function(student) {
     return $scope.StudentsFactory.changePermission(student);
   }
+
+  $scope.sortColumn = function(clickedColumn) {
+    $scope.column = clickedColumn;
+  }
 });
