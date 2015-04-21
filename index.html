@@ -2,15 +2,19 @@
 <html lang="en" ng-app="studentRoster">
 <head>
   <meta charset="UTF-8">
-  <title>Student App</title>
+  <title>Field Trip Permissions</title>
   <script src="lib/angular.js"></script>
   <script src="app.js"></script>
   <script src="services/StudentsFactory.js"></script>
   <script src="controllers/StudentsController.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
+
 </head>
 <body>
+  <header>
+    <h1>Field Trip Permissions</h1>
+  </header>
   <div class="container">
     <div ng-controller="StudentsCtrl">
 
@@ -20,78 +24,81 @@
           <h4>Search Students</h4>
           <form class="form-inline" role="form">
             <div class="form-group">
-              <input ng-model="query" type="text" id="student-name" class="form-control" placeholder="Search">
+              <input ng-model="query.name" type="text" id="student-name" class="form-control" placeholder="Search">
             </div>
           </form>
         </div>
       </div>
+      <br>
 
-      <!-- *********  Students List  ************** -->
+
+
+
+      <!-- *********  Add Student ************** -->
       <div class="row">
-        <div class="col-md-12">
-          <h2 ng-show="students.length && filtered.length">Student List</h2>
-          <h2 ng-show="students.length && !filtered.length">No Matches</h2>
-          <div ng-show="students.length && filtered.length" class="row chart-titles">
-
-            <div ng-click="sortColumn('name')" class="col-md-4 column-name">
-              Name
-            </div>
-            <div ng-click="sortColumn('permissionSlip')" class="col-md-4 column-name">
-              Permission Slip
-            </div>
-            <div class="col-md-4 column-name">
-              Delete
-            </div>
-          </div>
-          <div ng-show="students.length && filtered.length">
-            <div ng-repeat="item in filtered = (students | filter:query | orderBy:column)">
-
-              <div class="col-md-4">
-                <span class="clickable" ng-click="editing = true" ng-hide="editing">{{item.name}}</span>
-              </div>
-              <div class="col-md-4">
-                <a class="clickable" ng-click="changePermission(item)">{{getPermission(item)}}</a>
-              </div>
-
-              <div class="col-md-4">
-                <a ng-click="deleteStudent(item)">x</a>
-              </div>
-
-              <span class="form-group" ng-show="editing" ng-submit="editing = false">
-                <form class="form-inline" role="form">
-                  <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
-                  <button class="btn btn-default btn-sm" type="submit">Save</button>
-                </form>
-              </span>
-          </div>
-        </div>
-
-        <!-- *********  Add Student ************** -->
-        <div class="col-md-4">
+        <div class="well well-lg">
           <h2>New Student:</h2>
           <form ng-submit="addStudent()" class="form-inline" role="form">
             <div class="form-group">
               <input type="text" ng-model="studentName" class="form-control" placeholder="Enter name">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+
+
+
+            <button type="submit" class="btn btn-info">Submit
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            </button>
           </form>
         </div>
       </div>
 
-    </div>
+      <!-- *********  Students List  ************** -->
+      <div class="row well" ng-show="students.length && filtered.length">
+        <div>
+          <div class="col-md-12">
+            <h2 ng-show="students.length && filtered.length">Student List</h2>
+            <h2 ng-show="students.length && !filtered.length">No Matches</h2>
+            <div ng-show="students.length && filtered.length" class="row chart-titles">
 
-    <!-- *********  Permission Slips  **************
-    <div class="row permission" ng-controller="FieldTripsCtrl">
-      <div class="col-md-6">
-        <h2> Permission Slips</h2>
-        <ul>
-          <li ng-repeat="item in studentsWithPermission">
-            {{item.name}}
-          </li>
-        </ul>
+              <div ng-click="sortColumn('name')" class="col-md-4 column-name">
+                Name
+              </div>
+              <div ng-click="sortColumn('permissionSlip')" class="col-md-4 column-name">
+                Permission Slip
+              </div>
+              <div class="col-md-4 column-name">
+                Delete
+              </div>
+            </div>
+
+            <div ng-show="students.length && filtered.length">
+              <div ng-repeat="item in filtered = (students | filter:query:startsWith | orderBy:column )">
+                <div class="col-md-4">
+                  <span class="clickable" ng-click="editing = true" ng-hide="editing">{{item.name}}</span>
+                </div>
+                <div class="col-md-4">
+                  <a class="clickable" ng-click="changePermission(item)">{{getPermission(item)}}</a>
+                </div>
+
+                <div class="col-md-4">
+                  <button ng-click="deleteStudent(item)" type="button" class="btn btn-danger btn-xs" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true">
+                    </span>
+                  </button>
+                </div>
+
+                <span class="form-group" ng-show="editing" ng-submit="editing = false">
+                  <form class="form-inline" role="form">
+                    <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
+                    <button class="btn btn-default btn-sm" type="submit">Save</button>
+                  </form>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  -->
   </div>
 </body>
 </html>

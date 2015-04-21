@@ -23,7 +23,7 @@ studentRoster.controller('StudentsCtrl', function StudentsCtrl($scope, StudentsF
 
   $scope.changePermission = function(student) {
     return $scope.StudentsFactory.changePermission(student);
-  }
+  };
 
   $scope.sortColumn = function(clickedColumn) {
     if (!$scope.column || ($scope.column[0] === '-' && $scope.column.substr(1) === clickedColumn) || $scope.column != clickedColumn) {
@@ -31,5 +31,10 @@ studentRoster.controller('StudentsCtrl', function StudentsCtrl($scope, StudentsF
     } else {
       $scope.column = '-' + clickedColumn;
     }
-  }
+  };
+
+  $scope.startsWith = function (query, expected) {
+    var lowerStr = (query + "").toLowerCase();
+    return lowerStr.indexOf(expected.toLowerCase()) === 0;
+  };
 });
