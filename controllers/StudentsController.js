@@ -26,6 +26,10 @@ studentRoster.controller('StudentsCtrl', function StudentsCtrl($scope, StudentsF
   }
 
   $scope.sortColumn = function(clickedColumn) {
-    $scope.column = clickedColumn;
+    if (!$scope.column || ($scope.column[0] === '-' && $scope.column.substr(1) === clickedColumn) || $scope.column != clickedColumn) {
+      $scope.column = clickedColumn;
+    } else {
+      $scope.column = '-' + clickedColumn;
+    }
   }
 });
