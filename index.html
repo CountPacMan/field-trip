@@ -31,9 +31,29 @@
         <div class="col-md-12">
           <h2 ng-show="students.length && filtered.length">Student List</h2>
           <h2 ng-show="students.length && !filtered.length">No Matches</h2>
-          <ul>
-            <li ng-repeat="item in filtered = (students | filter:query)">
-              <span class="clickable" ng-click="editing = true" ng-hide="editing">{{item.name}}</span> - Permission Slip? <a class="clickable" ng-click="changePermission(item)">{{getPermission(item)}}</a> <a ng-click="deleteStudent(item)">x</a>
+          <div ng-show="students.length && filtered.length" class="row chart-titles">
+
+            <div class="col-md-4 column-name">
+              Name
+            </div>
+            <div class="col-md-4 column-name">
+              Permission Slip
+            </div>
+            <div class="col-md-4 column-name">
+              Delete
+            </div>
+          </div>
+          <div ng-show="students.length && filtered.length">
+            <div ng-repeat="item in filtered = (students | filter:query)">
+              <div class="col-md-4">
+                <span class="clickable" ng-click="editing = true" ng-hide="editing">{{item.name}}</span>
+              </div>
+              <div class="col-md-4">
+                <a class="clickable" ng-click="changePermission(item)">{{getPermission(item)}}</a>
+              </div>
+              <div class="col-md-4">
+                <a ng-click="deleteStudent(item)">x</a>
+              </div>
 
               <span class="form-group" ng-show="editing" ng-submit="editing = false">
                 <form class="form-inline" role="form">
@@ -41,8 +61,7 @@
                   <button class="btn btn-default btn-sm" type="submit">Save</button>
                 </form>
               </span>
-            </li>
-          </ul>
+          </div>
         </div>
 
         <!-- *********  Add Student ************** -->
